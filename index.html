@@ -82,9 +82,55 @@
             <p> Para visualizar de que manera se componen la carga financiera en las distintas carreras de Diseño en oferta los <a href="https://datavizcatalogue.com/ES/metodos/grafico_de_barras_apiladas.html" target="_blank">gráficos de barras apiladas</a> resultan idóneos. Según el Catálogo de visualización de Datos, este gráfico nos permite observar el valor total y comparar segmentos independientes para contrastar con otros grupos.</p>
 
 			<p> Al contrastar entre las ofertas de las distintas universidades chilenas para el 2026, el gráfico revela que el costo real de una carrera incluye el costo de titulación, un costo que suele ser imprevisto para los estudiantes. La visualización expone que parte de estas universidades sumán más de $200.000 pesos chilenos al gasto total.</p>
-            <figure>
-				<canvas id="buscador"></canvas>
-			</figure>
+           
+			<div id="contenedor">
+            <h1>ᕙ( •̀ ᗜ •́ )ᕗ</h1>
+            <h2>ELECTIVOS DE DISEÑO</h2>
+
+            <input type="text" id="elInput" placeholder="Filtrar electivos…" />
+            <div id="contenedordetabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Asignatura electiva</th>
+                            <th>Mención</th>
+                            <th>Grupo</th>
+                            <th>Enfoque</th>
+                        </tr>
+			 <script>
+            const t = document.querySelector("#este");
+            const URL = "https://api.myjson.online/v1/records/66a34375-25a0-4ac6-962c-b1af8bffc490";
+
+            fetch(URL)
+                .then((respuesta) => {
+                    if (!respuesta.ok) {
+                        throw new Error("Error HTTP: " + respuesta.status);
+                    }
+                    return respuesta.json();
+                })
+                .then((datos) => {
+                    var trabajo = datos.data;
+                    console.log(trabajo);
+                    trabajo.forEach((x) => {
+                        t.innerHTML += `<tr style="${x.ok == 1 ? "background-color: var(--color-iluminadisimo); color: var(--color-oscurisimo)" : ""}"><td>${x.id}</td><td>${x.name}</td><td>${x.track}</td><td>${x.group}</td><td>${x.focus}</td></tr>`;
+                    });
+                })
+                .catch((error) => {
+                    console.error("Algo salió mal:", error);
+                });
+
+            function sinAcentos(str) {
+                return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            }
+
+            document.getElementById("elInput").addEventListener("keyup", function () {
+                const valor = sinAcentos(this.value.toLowerCase());
+                document.querySelectorAll("#este tr").forEach(function (fila) {
+                    fila.style.display = sinAcentos(fila.textContent.toLowerCase()).includes(valor) ? "" : "none";
+                });
+            });
+        </script>
 			
 			</figure>
             <h5>Fuentes</h5>
