@@ -1,9 +1,10 @@
 new Chart(document.getElementById("grafico 1"), {
                 type: "pie",
+	            data: {
                 labels: ["Diseño","Visual y Medios","Industrial y Servicios"],
 	            datasets: [{
 					label: "MENCIONES DE TITULADOS 2023 - 2025",
-					data: [43, 165, 126]
+					data: [43, 165, 126],
 					backgroundColor: [
 						'#ffcd56', // Amarillo
                         '#ff9f40', // Naranja
@@ -12,7 +13,8 @@ new Chart(document.getElementById("grafico 1"), {
 				    borderWidth: 2,
                     borderColor: '#ffffff' // Línea divisoria blanca entre porciones
                         }]
-                        };
+					    }
+                        });
 					
 			
 			const nombresUniversidades = {
