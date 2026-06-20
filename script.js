@@ -1,4 +1,4 @@
-new Chart(document.getElementById("dispersion"), {
+new Chart(document.getElementById("grafico 1"), {
                 type: "pie",
                 labels: ["Diseño","Visual y Medios","Industrial y Servicios"],
 	            datasets: [{
