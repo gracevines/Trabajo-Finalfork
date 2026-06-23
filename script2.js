@@ -1,4 +1,3 @@
-<script>
             const t = document.querySelector("#este");
             const URL = "https://api.myjson.online/v1/records/66a34375-25a0-4ac6-962c-b1af8bffc490";
 
@@ -30,4 +29,3 @@
                     fila.style.display = sinAcentos(fila.textContent.toLowerCase()).includes(valor) ? "" : "none";
                 });
             });
-        </script>
